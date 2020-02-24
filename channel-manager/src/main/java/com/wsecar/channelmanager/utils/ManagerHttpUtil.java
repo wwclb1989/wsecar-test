@@ -2,11 +2,14 @@ package com.wsecar.channelmanager.utils;
 
 
 
+import com.wsecar.channelmanager.argspackage.ManagerPacket;
+import com.wsecar.channelmanager.argspackage.PageModel;
+import com.wsecar.channelmanager.resultpackage.ResultPacket;
+import com.wsecar.channelmanager.resultpackage.ResultPageModel;
 import com.wsecar.common.exception.BusinessException;
 import com.wsecar.common.utils.JsonUtil;
 import com.wsecar.common.utils.WsecarHttpUtil;
-import com.wsecar.systemmanager.resultpackage.ResultPacket;
-import com.wsecar.systemmanager.resultpackage.ResultPageModel;
+
 
 import java.util.List;
 import java.util.Map;
