@@ -1,6 +1,7 @@
 package com.wsecar.systemmanager.autotest.channel;
 
 
+import com.wsecar.common.utils.JsonUtil;
 import com.wsecar.systemmanager.argspackage.PageModel;
 import com.wsecar.systemmanager.utils.ManagerHttpUtil;
 import org.junit.Test;
@@ -39,7 +40,16 @@ public class ChannelTest {
         // 发送HTTP请求，得到列表
         List<Map<String, Object>> body = ManagerHttpUtil.doPost(url, op, pageModel);
 
-        body.forEach(System.out::println);
+        System.out.println("输出列表的json格式：");
+        System.out.println(JsonUtil.toJson(body));
+
+        System.out.println("键值对格式：");
+        for (Map<String, Object> map :body) {
+            System.out.println("----------------");
+            for (String key : map.keySet()) {
+                System.out.println(key + ":" + map.get(key));
+            }
+        }
 
     }
 
