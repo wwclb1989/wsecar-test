@@ -107,9 +107,58 @@ public class ManagerHttpUtil {
     }
 
 
+    /**
+     * 用于分页请求，返回ResultPacket包括业务码，业务处理信息
+     * @param url   请求url
+     * @param op    请求接口op
+     * @param pageModel     // 分页模型
+     * @return
+     */
+    public static ResultPacket post(String url, String op, PageModel pageModel) {
 
-    public static void main(String[] args) {
+        // 请求消息体打包
+        ManagerPacket packet = new ManagerPacket();
+        packet.setToken(TOKEN);     // token是认证信息
+        packet.setOp(op);
+        packet.setData(JsonUtil.toJson(pageModel));
+        System.out.println(JsonUtil.toJson(pageModel));
 
+        String response = WsecarHttpUtil.post(url, JsonUtil.toJson(packet));
+
+        return JsonUtil.fromJson(response, ResultPacket.class);
+    }
+
+    /**
+     * 非分页请求，返回ResultPacket包括业务码，业务处理信息
+     * @param url
+     * @param op
+     * @param args
+     * @return
+     */
+    public static ResultPacket post(String url, String op, Map<String, Object> args) {
+        ManagerPacket packet = new ManagerPacket();
+        packet.setToken(TOKEN);
+        packet.setOp(op);
+        packet.setData(JsonUtil.toJson(args));
+
+        String response = WsecarHttpUtil.post(url, JsonUtil.toJson(packet));
+
+        return JsonUtil.fromJson(response, ResultPacket.class);
+    }
+
+    /**
+     * post请求，返回ResultPacket包括业务码，业务处理信息
+     * @param url
+     * @param args
+     * @return
+     */
+    public static ResultPacket post(String url, Map<String, Object> args) {
+        ManagerPacket packet = new ManagerPacket();
+        packet.setData(JsonUtil.toJson(args));
+
+        String response = WsecarHttpUtil.post(url, JsonUtil.toJson(packet));
+
+        return JsonUtil.fromJson(response, ResultPacket.class);
     }
 
 }
